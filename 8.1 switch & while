@@ -1,0 +1,64 @@
+switch 语句
+//一种分支语句，常用于多分支情况
+
+
+///输入一个值（day）,并输出对应的是星期几\\\
+int main()
+{
+	int day = 0;              //switch中定义的表达式必须是整形（int）
+	scanf("%d",&day);         //&易漏，是取地址符号。。。作用：
+	switch (day)              //case 后面接常量（1，2，3…）
+	{
+	case 1:
+		printf("星期一");
+		break;                  //break用于终止一个switch，否则将会从切入点一直向下运行
+	case 2:
+		printf("星期二");
+		break;
+		case 3:
+		printf("星期三");
+		break;
+	case 4:
+		printf("星期四");
+		break;
+		case 5:
+		printf("星期五");
+		break;
+	case 6:
+		printf("星期六");
+		break;
+		case 7:
+		printf("星期日");
+		break;  
+  }
+	return 0;
+}
+
+
+///输入一个值，判断是工作日还是周末（又或者是？？）\\\
+int main()
+{
+	int a = 0;
+	scanf("%d",&a);
+	switch (a)
+	{
+	case 1:
+  case 2:
+  case 3:
+  case 4:
+  case 5:
+   printf("工作日");            //当输入的数在1-5之间时，切入相关case并向下执行直到case5中的打印和break
+		break;
+	case 6:
+  case 7:
+		printf("休息日");
+		break;
+	default：                     //default 当输入的值没有对应的case时，就会走default
+ printf("输入错误");
+ break;
+  }
+	return 0;
+
+
+ while 语句
+//循环 
