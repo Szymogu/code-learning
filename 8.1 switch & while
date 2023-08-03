@@ -1,4 +1,4 @@
-switch 语句
+1.switch 语句
 //一种分支语句，常用于多分支情况
 
 
@@ -60,5 +60,90 @@ int main()
 	return 0;
 
 
- while 语句
+2. while 语句
 //循环 
+
+
+///输入一个数，并输出它\\\
+int main()
+{
+	int a = 0;
+	while (a != EOF)          //当变量a不为EOF(ctrl + z)时循环
+	{
+		scanf("%d", &a);
+	printf("%d\n",a);
+	
+}
+	return 0;
+}
+
+
+///输入一个字符，如果属于1-9，则输出它\\\
+
+int main()
+{
+      int A = 0;
+	while ((A = getchar()) != EOF)           //getchar与putchar用于接收/输出一个字符，此时接受一个字符存入变量A中
+		{if (A < '0' || A > '9')         //'||'mean并
+		continue;
+		putchar(A);
+		}
+	return 0;
+}
+
+
+///输入密码，确认密码\\\
+int main()
+{
+	int ret = 0;
+	char password[20] = { 0 };
+	printf("请输入密码");
+	scanf("%s\n", password);
+	printf("请确认（Y/N):>");
+	ret = getchar();
+	if (ret == 'Y')
+		printf("成功确认");
+	else
+		printf("放弃确认");
+
+	return 0;
+}
+
+//可是这个代码运行的结果是直接  放弃确认
+WHY？？？
+Because：
+scanf、getchar 属于输入函数，它们会把我们输入的信息存入【输入缓冲区】
+在 scanf("%s\n", password) 时，我们输入了"password+/n"(/n其实是回车)
+缓冲区有 password 与 /n 这两个元素
+scanf读取时提取走了password
+代码向下执行到ret = getchar() getchar尝试在缓冲输入区提取字符，成功提取/n
+So:
+所以我们应该在getchar前清空缓冲输入区
+getchar()
+ret = getchar()
+先进行一次提取，将/n提取走
+再将新输入的字符元素提取存储再ret里面
+如果缓冲区垃圾（bushi）太多
+就要进行多此提取直到里面没东西
+
+while((ch = getchar() !='/n')
+循环执行getchar提取字符直到提取到'/n'
+
+所以这个code被修改为：
+int main()
+{
+	int ret = 0;
+	char password[20] = { 0 };
+	int ch = 0;                          //添加变量ch，用来放垃圾
+	printf("请输入密码");
+	scanf("%s\n", password);
+	printf("请确认（Y/N):>");
+	while ((ch = getchar() != '/n'));    //循环清理垃圾
+    ret = getchar();
+	if (ret == 'Y')
+		printf("成功");
+	else
+		printf("放弃");
+
+	return 0;
+}
