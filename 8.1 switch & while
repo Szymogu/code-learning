@@ -84,7 +84,7 @@ int main()
 {
       int A = 0;
 	while ((A = getchar()) != EOF)           //getchar与putchar用于接收/输出一个字符，此时接受一个字符存入变量A中
-		{if (A < '0' || A > '9')         //'||'mean并
+		{if (A < '0' || A > '9')         //'||'mean或
 		continue;
 		putchar(A);
 		}
